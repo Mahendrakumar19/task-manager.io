@@ -4,9 +4,9 @@ A full-stack Task Management application built with modern JavaScript/TypeScript
 
 ## 🎯 Live Deployment
 
-- **Frontend:** [Deploy to Vercel/Netlify]
-- **Backend:** [Deploy to Render/Railway]
-- **Database:** PostgreSQL on Render/Railway
+- **Frontend:** https://task-manager-io-chi.vercel.app/
+- **Backend:** https://task-manager-io.onrender.com/
+- **Database:** PostgreSQL on Render
 
 ## 🏗️ Architecture Overview
 
