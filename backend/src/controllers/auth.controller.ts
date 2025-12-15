@@ -14,7 +14,12 @@ router.post("/register", async (req: Request, res: Response) => {
   try {
     const user = await authService.register(email, password, name);
     const token = signJwt({ id: user.id, email: user.email });
-    res.cookie("token", token, { httpOnly: true });
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+      maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+    });
     return res.status(201).json(user);
   } catch (err: any) {
     return res.status(400).json({ error: err.message });
@@ -28,7 +33,12 @@ router.post("/login", async (req: Request, res: Response) => {
   try {
     const user = await authService.login(email, password);
     const token = signJwt({ id: user.id, email: user.email });
-    res.cookie("token", token, { httpOnly: true });
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+      maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+    });
     return res.json(user);
   } catch (err: any) {
     return res.status(401).json({ error: err.message });

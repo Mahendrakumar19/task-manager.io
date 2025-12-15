@@ -5,7 +5,19 @@ import taskRouter from "./controllers/task.controller";
 import authRouter from "./controllers/auth.controller";
 
 const app = express();
-app.use(cors({ origin: true, credentials: true }));
+
+// CORS configuration for production
+const corsOptions = {
+  origin: [
+    'http://localhost:3000',
+    'https://task-manager-io-chi.vercel.app'
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
