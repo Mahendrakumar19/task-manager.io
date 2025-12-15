@@ -25,7 +25,6 @@ export function Tasks() {
   const { data: tasks, isLoading } = useTasks(filter);
   const { data: users } = useQuery(['users'], () => api.getUsers());
   const createTask = useCreateTask();
-  const updateTask = useUpdateTask();
   const deleteTask = useDeleteTask();
 
   const {
